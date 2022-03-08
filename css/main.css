@@ -1,23 +1,23 @@
 /* Global */
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 @font-face {
   font-family: StrokeOrder;
-  src: url('/fonts/KanjiStrokeOrders.ttf');
+  src: url("/fonts/KanjiStrokeOrders.ttf");
 }
 
 @font-face {
   font-family: Mitimasu;
-  src: url('/fonts/mitimasu.ttf');
+  src: url("/fonts/mitimasu.ttf");
 }
 
 #selectorTemplate,
 #kanjiTemplate {
-    display: none;
+  display: none;
 }
 
 /* Layout */
@@ -61,7 +61,7 @@ body {
 .kanjiStrokes .strokeToggle {
   height: 15px;
   width: 15px;
-  content: '';
+  content: "";
   display: inline-block;
   background-color: #fff;
   border-radius: 15px;
@@ -95,6 +95,7 @@ body {
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
+  position: relative;
 }
 
 #kanjiSelectionBox .kanji-box.selected {
@@ -130,33 +131,51 @@ body {
   font-size: 12px;
 }
 
-#content .kanji-box:nth-child(n+3) {
-    color: rgba(0, 0, 0, 0.15);
+#content .kanji-box:nth-child(n + 3) {
+  color: rgba(0, 0, 0, 0.15);
 }
 
-#content .kanji-box:nth-child(n+5) {
-    color: white;
+#content .kanji-box:nth-child(n + 5) {
+  color: white;
+}
+#content .kanji-box:nth-child(n + 2):nth-child(-n + 13)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: 1px dashed grey;
+  height: 1px;
+  width: 100%;
+}
+#content .kanji-box:nth-child(n + 2):nth-child(-n + 13)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-right: 1px dashed grey;
+  width: 1px;
+  height: 100%;
 }
 
 .kanji-row {
-  max-width: 980px;
+  max-width: 1300px;
   float: left;
 }
 
 .kanji-term,
 .kanji-definition {
-    display: inline-block;
+  display: inline-block;
 }
 
 .kanji-term {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .kanji-definition {
-    margin: 0 30px 0 10px;
-    text-transform: capitalize;
+  margin: 0 30px 0 10px;
+  text-transform: capitalize;
 }
 
 #content.handwriting .kanji-box {
@@ -166,19 +185,25 @@ body {
 }
 
 #content.stroke-order .kanji-box {
+  font-family: Mitimasu;
+  font-size: 85px;
+  line-height: 95px;
+}
+#content.stroke-order .kanji-box:nth-child(2) {
   font-family: StrokeOrder;
-  font-size: 80px;
+  font-size: 95px;
 }
 
 #content .kanji-box {
-    margin: 0 5px 5px 0;
-    width: 96px;
-    height: 96px;
-    border: 1px solid #000;
-    box-sizing: border-box;
-    float: left;
-    font-size: 65px;
-    text-align: center;
+  margin: 0 5px 5px 0;
+  width: 96px;
+  height: 96px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  float: left;
+  font-size: 65px;
+  text-align: center;
+  position: relative;
 }
 
 .author {
@@ -191,7 +216,7 @@ body {
 }
 
 .author a {
-  color: #E667AF;
+  color: #e667af;
 }
 
 .author a:hover {
@@ -199,14 +224,30 @@ body {
 }
 
 @media print {
+  h1 {
+    display: none;
+  }
+  .kanji-data {
+    margin: 0;
+    padding: 0.1rem;
+    font-size: 0.6rem;
+  }
+  .kanji-box {
+    width: 94px;
+    height: 94px;
+  }
   .kanji-row {
     width: 100%;
     page-break-inside: avoid;
   }
 
   #content {
-    width: 980px;
+    width: 1300px;
     float: left;
+    padding-left: 10px;
+  }
+  #content .kanji-row:nth-child(4n + 1) {
+    padding-top: 10px;
   }
 
   #kanjiSelectionBox {
